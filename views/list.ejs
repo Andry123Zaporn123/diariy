@@ -1,0 +1,38 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach((item)=>{%>
+
+
+      <form action="/delete" method="post">
+
+    <div class="item">
+        <!--onchange="this.form.submit()" -  це робить так що цей сабміт може щось відправляти,
+        де onchange= - це html параметер який дозволяє змінити призначення тега, просто коли ми відмітили checkbox
+        то переходить до читання onchange, а onchange - дає нам js метод який прихначає значення submit для цього тегу-->
+
+        <!--тут така фашка є, після того як ми поклали onchange="this.form.submit()" ця форма все норм відправляє,
+        ми також поклали name= "che", і коли в нащому методі який приймає це ми будемо використовувати body - то вын нам виведе -
+        - { che: 'on' } - тобто наше name тобто його значення che, що в свою чергу є ключом для value тільки value у нас встановлений
+        по замовченню, що значить що нам просто його треба змінити так як нам потрібно, що я і зроблю нижче.
+        і тепере використовуючи body кладемо крапку і викликаємо значення нашого name, тобто che -->
+        <input type="hidden" name="whatWeDelete" value="<%= listTitle %>">
+    <input type="checkbox" onchange="this.form.submit()" name= "che" value="<%=  item._id  %>">
+    <p><%=  item.name  %></p>
+  </div>
+      </form>
+<%
+}) %>
+
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem"  placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%=listTitle%>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
