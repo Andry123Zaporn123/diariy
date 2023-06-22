@@ -92,6 +92,7 @@ app.post("/delete",(req, res)=>{
     TitleModel.findOneAndUpdate({name:whatWeDelete}, {$pull: {item: {_id: che}}}).then((resul)=>{
       console.log(resul)});
     res.redirect("/"+whatWeDelete);
+
   }
 
 });
