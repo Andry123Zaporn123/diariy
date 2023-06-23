@@ -17,7 +17,11 @@ const mongoose = require("mongoose")
 
 /** url взято з https://cloud.mongodb.com/v2/   короче реальна база, тут тільки підставляємо реальний пасворд,
  * і видаляємо все після net аж до нашої бази яку ми створюємо*/
-mongoose.connect("mongodb+srv://cherenuha1:28011984@cluster0.hnhoqnb.mongodb.net/todolistDB");
+mongoose.connect("mongodb+srv://cherenuha1:28011984@cluster0.hnhoqnb.mongodb.net/todolistDB",{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 
 
 const itemSchema = new mongoose.Schema({name:{type:String}});
